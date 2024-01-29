@@ -1,0 +1,19 @@
+
+마이바티스를 쓰니까 좋은점
+1. Service, DAO 코드가 줄었어요! -> 태그를 이용해서 xml 저장하는 방식으로 변경
+	-> POJO 기반 Framework, 자바코드에는 자바만...
+2. DAO가 가벼워졌어요.
+
+마이바티스 동작구조
+1. mybatis-config.xml 파일ㄹ에 DB접속정보, 쿼리문 위치 정보를 저장
+2. SqlSessionTemplate을 이용하여 SqlSession을 생성
+ - mybatis-config.xml가 참조될 때 mybatis 스트림을 사용.
+ - 연결공장기술자가 연결공장을 만들고 연결공장은 연결을 만들었음.  (★ 시험에 나올 수 있음!)
+3. 기능에 필요한 JSP - Controller - Service - DAO - mapper.xml
+ 3-1 JSP를 기능에 맞게 만든다. form, action, method
+ 3-2 Controller를 만듬. 한글 인코딩, 쿼리스트링 파싱, Service호출 후 성공여부에 따라 페이지 이동시킴
+ 3-3 Service에서는 연결을 만들고 커밋/롤백 해줌(DML의 경우), DAO를 호출하여 연결과 파싱된 데이터를 넘겨줌.
+ 3-4 DAO에서는 xml에 있는 쿼리문 수행하도록 해줌, 메소드를 이용해서 어떤 쿼리문이
+ 	실행되는지 파악 가능함.
+ 3-5 mapper.xml가서 쿼리문에 맞는 태그 작성하고 id부여하여 DAO랑 맞춰줘야함.
+ SELECT인 경우에는 resultMap을 사용해주어야 함.

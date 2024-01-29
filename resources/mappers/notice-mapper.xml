@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+  <mapper namespace="NoticeMapper">  
+  	<resultMap type="notice.model.vo.Notice" id="noticeResultMap">
+  		<id 	property="noticeNo" 	 column="NOTICE_NO" />
+  		<result property="noticeSubject" column="NOTICE_SUBJECT"/>
+  		<result property="noticeContent" column="NOTICe_CONTENT"/>
+  		<result property="noticeWriter"  column="NOTICE_WRITER"/>
+  		<result property="noticeDate"	 column="NOTICE_DATE"/>
+  		<result property="updateDate"    column="UPDATE_DATE"/>
+  		<result property="viewCount"	 column="VIEW_COUNT"/>  		
+  	</resultMap>  	
+  	<insert id="insertNotice">
+  	<!--  #{} : VO 보고 적기 -->
+  		INSERT INTO NOTICE_TBL
+  		VALUES(SEQ_NOTICE_NO.NEXTVAL, #{noticeSubject}, #{noticeContent}, 'admin', DEFAULT, DEFAULT, DEFAULT)
+  	</insert>
+  	<update id="updateNotice">
+  		UPDATE NOTICE_TBL
+  		SET NOTICE_SUBJECT = #{noticeSubject}, NOTICE_CONTENT = #{noticeContent}, UPDATE_DATE = SYSTIMESTAMP
+  		WHERE NOTICE_NO = #{noticeNo }  		
+  	</update>
+  	<delete id="deleteNotice">
+  		DELETE FROM NOTICE_TBL WHERE NOTICE_NO = #{noticeNo }
+  	</delete>
+  	<select id="selectAllNotice" resultMap="noticeResultMap">
+  		SELECT * FROM NOTICE_TBL ORDER BY NOTICE_NO DESC
+  	</select>  	
+  	<select id="selectOneByNo" resultMap="noticeResultMap">
+  		SELECT * FROM NOTICE_TBL WHERE NOTICE_NO = #{noticeNo}
+  	</select>
+  </mapper>
