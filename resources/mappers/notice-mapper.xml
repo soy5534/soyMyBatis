@@ -33,4 +33,7 @@
   	<select id="selectOneByNo" resultMap="noticeResultMap">
   		SELECT * FROM NOTICE_TBL WHERE NOTICE_NO = #{noticeNo}
   	</select>
+  	<select id="getTotalCount" resultType="_int">
+  		SELECT COUNT(*) FROM NOTICE_TBL
+  	</select>
   </mapper>

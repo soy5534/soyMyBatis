@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+// SqlSessionTemplate = MyBatis에서 사용됨.
 public class SqlSessionTemplate {
 
     public static SqlSession getSqlSession() {
